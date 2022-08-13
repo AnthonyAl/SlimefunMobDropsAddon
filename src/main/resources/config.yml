@@ -2,21 +2,21 @@ vanilla:
   enabled: True
   skeleton:
     rare_items:
-      - ADAMANTITE 10
-      - SKELETON_DATA_CARD 50
+      - ADAMANTITE 10.0
+      - SKELETON_DATA_CARD 50.0
     common_items:
-      - INFERNAL_BONEMEAL 80
+      - INFERNAL_BONEMEAL 80.0
   zombie:
     rare_items:
-      - MAGICAL_ZOMBIE_PILLS 10
+      - MAGICAL_ZOMBIE_PILLS 10.0
     common_items:
 
 mythic:
   enabled: False
   skeletonking:
     rare_items:
-      - WITHER_SKELETON_DATA_CARD 10
-      - WITHER_DATA_CARD 1
+      - WITHER_SKELETON_DATA_CARD 10.0
+      - WITHER_DATA_CARD 1.0
     common_items:
-      - INFERNAL_BONEMEAL 100
-      - WITHER_ASSEMBLER 50
+      - INFERNAL_BONEMEAL 100.0
+      - WITHER_ASSEMBLER 50.0
