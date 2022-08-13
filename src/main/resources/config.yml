@@ -1,7 +1,10 @@
+#Only mobs dying my a player will drop custom loot if set to True.
+player_only: True
+
 vanilla:
-  #Plugin will ignore Vanilla mobs if set to False
+  #Plugin will ignore Vanilla mobs if set to False.
   enabled: True
-  #Custom vanilla mob loot tables
+  #Custom vanilla mob loot tables.
   skeleton:
     rare_items:
       - ADAMANTITE 50.0
@@ -14,9 +17,9 @@ vanilla:
     common_items:
 
 mythic:
-  #Plugin will regard Mythic Mobs as Vanilla mobs if set to False
+  #Plugin will regard Mythic Mobs as Vanilla mobs if set to False.
   enabled: False
-  #Custom mythic mob loot tables
+  #Custom mythic mob loot tables.
   skeletalminion:
     rare_items:
       - CARBONADO 20.0

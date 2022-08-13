@@ -21,6 +21,7 @@ public final class ConfigHandler {
 
         config.setVanilla_enabled(fileConfiguration.getBoolean("vanilla.enabled"));
         config.setMythic_enabled(fileConfiguration.getBoolean("mythic.enabled"));
+        config.setPlayer_only(fileConfiguration.getBoolean("player_only"));
 
         if(config.isVanilla_enabled())
             for(EntityType type : EntityType.values()) {
@@ -43,6 +44,10 @@ public final class ConfigHandler {
                 config.put_to_mythic(type, mobs);
             }
         }
+    }
+
+    public boolean isPlayer_only() {
+        return config.isPlayer_only();
     }
 
     public boolean isVanilla_enabled() {

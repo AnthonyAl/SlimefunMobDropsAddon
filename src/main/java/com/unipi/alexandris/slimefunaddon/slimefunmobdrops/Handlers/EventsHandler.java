@@ -30,6 +30,7 @@ public final class EventsHandler implements Listener {
     @EventHandler
     public void onVanillaPerish(EntityDeathEvent event) {
         if(!plugin.config.isVanilla_enabled()) return;
+        if(plugin.config.isPlayer_only() && event.getEntity().getKiller() == null) return;
         if(plugin.config.isMythic_enabled())
             if(((MythicBukkit) (Objects.requireNonNull(getServer().getPluginManager().getPlugin("MythicMobs")))).getAPIHelper().isMythicMob(event.getEntity())) return;
 
@@ -44,7 +45,7 @@ public final class EventsHandler implements Listener {
             ItemStack itemStack = Objects.requireNonNull(SlimefunItem.getById(slimefun_item)).getItem();
 
             if(Utils.calcDropChance(drop_rate)) {
-                getLogger().info("Spawned slimefun item " + slimefun_item + " as a result of a Vanilla Common Mob Drop");
+                getLogger().info("Spawned slimefun item " + slimefun_item + " as a result of a Vanilla Common Mob Drop.");
                 SlimefunUtils.spawnItem(event.getEntity().getLocation(), itemStack, ItemSpawnReason.MISC);
             }
         }
@@ -57,7 +58,7 @@ public final class EventsHandler implements Listener {
             ItemStack itemStack = Objects.requireNonNull(SlimefunItem.getById(slimefun_item)).getItem();
 
             if(Utils.calcDropChance(drop_rate)) {
-                getLogger().info("Spawned slimefun item " + slimefun_item + " as a result of a Vanilla Rare Mob Drop");
+                getLogger().info("Spawned slimefun item " + slimefun_item + " as a result of a Vanilla Rare Mob Drop.");
                 SlimefunUtils.spawnItem(event.getEntity().getLocation(), itemStack, ItemSpawnReason.MISC);
                 break;
             }
@@ -67,9 +68,10 @@ public final class EventsHandler implements Listener {
     @EventHandler
     public void onMythicPerish(MythicMobDeathEvent event) {
         if(!plugin.config.isMythic_enabled()) return;
+        if(plugin.config.isPlayer_only() && event.getKiller() == null) return;
 
-        List<String> commons = plugin.config.get_items(event.getMob().getName(), 0);
-        List<String> rares = plugin.config.get_items(event.getMob().getName(), 1);
+        List<String> commons = plugin.config.get_items(event.getMob().getName().replaceAll(" ", ""), 0);
+        List<String> rares = plugin.config.get_items(event.getMob().getName().replaceAll(" ", ""), 1);
 
         //For the common items (all of them can drop at one time)
         for(String data : commons) {
@@ -79,7 +81,7 @@ public final class EventsHandler implements Listener {
             ItemStack itemStack = Objects.requireNonNull(SlimefunItem.getById(slimefun_item)).getItem();
 
             if(Utils.calcDropChance(drop_rate)) {
-                getLogger().info("Spawned slimefun item " + slimefun_item + " as a result of a Mythic Mob Common Mob Drop");
+                getLogger().info("Spawned slimefun item " + slimefun_item + " as a result of a Mythic Mob Common Mob Drop.");
                 SlimefunUtils.spawnItem(event.getEntity().getLocation(), itemStack, ItemSpawnReason.MISC);
             }
         }
@@ -92,7 +94,7 @@ public final class EventsHandler implements Listener {
             ItemStack itemStack = Objects.requireNonNull(SlimefunItem.getById(slimefun_item)).getItem();
 
             if(Utils.calcDropChance(drop_rate)) {
-                getLogger().info("Spawned slimefun item " + slimefun_item + " as a result of a Mythic Mob Rare Mob Drop");
+                getLogger().info("Spawned slimefun item " + slimefun_item + " as a result of a Mythic Mob Rare Mob Drop.");
                 SlimefunUtils.spawnItem(event.getEntity().getLocation(), itemStack, ItemSpawnReason.MISC);
                 break;
             }
