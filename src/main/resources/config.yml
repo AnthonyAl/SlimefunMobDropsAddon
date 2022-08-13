@@ -1,9 +1,11 @@
 vanilla:
+  #Plugin will ignore Vanilla mobs if set to False
   enabled: True
+  #Custom vanilla mob loot tables
   skeleton:
     rare_items:
-      - ADAMANTITE 10.0
-      - SKELETON_DATA_CARD 50.0
+      - ADAMANTITE 50.0
+      - SKELETON_DATA_CARD 0.1
     common_items:
       - INFERNAL_BONEMEAL 80.0
   zombie:
@@ -12,11 +14,11 @@ vanilla:
     common_items:
 
 mythic:
+  #Plugin will regard Mythic Mobs as Vanilla mobs if set to False
   enabled: False
-  skeletonking:
+  #Custom mythic mob loot tables
+  skeletalminion:
     rare_items:
-      - WITHER_SKELETON_DATA_CARD 10.0
-      - WITHER_DATA_CARD 1.0
+      - CARBONADO 20.0
+      - CARBON 80.0
     common_items:
-      - INFERNAL_BONEMEAL 100.0
-      - WITHER_ASSEMBLER 50.0

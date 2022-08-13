@@ -68,8 +68,8 @@ public final class EventsHandler implements Listener {
     public void onMythicPerish(MythicMobDeathEvent event) {
         if(!plugin.config.isMythic_enabled()) return;
 
-        List<String> commons = plugin.config.get_items(event.getEventName(), 0);
-        List<String> rares = plugin.config.get_items(event.getEventName(), 1);
+        List<String> commons = plugin.config.get_items(event.getMob().getName(), 0);
+        List<String> rares = plugin.config.get_items(event.getMob().getName(), 1);
 
         //For the common items (all of them can drop at one time)
         for(String data : commons) {
