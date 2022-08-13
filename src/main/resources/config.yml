@@ -1,2 +1,22 @@
-options:
-  auto-update: true
+vanilla:
+  enabled: True
+  skeleton:
+    rare_items:
+      - ADAMANTITE 10
+      - SKELETON_DATA_CARD 50
+    common_items:
+      - INFERNAL_BONEMEAL 80
+  zombie:
+    rare_items:
+      - MAGICAL_ZOMBIE_PILLS 10
+    common_items:
+
+mythic:
+  enabled: False
+  skeletonking:
+    rare_items:
+      - WITHER_SKELETON_DATA_CARD 10
+      - WITHER_DATA_CARD 1
+    common_items:
+      - INFERNAL_BONEMEAL 100
+      - WITHER_ASSEMBLER 50

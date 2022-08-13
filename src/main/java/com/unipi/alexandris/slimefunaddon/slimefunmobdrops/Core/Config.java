@@ -1,0 +1,60 @@
+package com.unipi.alexandris.slimefunaddon.slimefunmobdrops.Core;
+
+import org.bukkit.entity.EntityType;
+
+import java.util.HashMap;
+import java.util.List;
+
+public final class Config {
+
+    private boolean vanilla_enabled;
+
+    private boolean mythic_enabled;
+
+    private final HashMap<EntityType, List<String>[]> vanilla = new HashMap<>();
+
+    private final HashMap<String, List<String>[]> mythic = new HashMap<>();
+
+    public boolean isVanilla_enabled() {
+        return vanilla_enabled;
+    }
+
+    public void setVanilla_enabled(boolean vanilla_enabled) {
+        this.vanilla_enabled = vanilla_enabled;
+    }
+
+    public boolean isMythic_enabled() {
+        return mythic_enabled;
+    }
+
+    public void setMythic_enabled(boolean mythic_enabled) {
+        this.mythic_enabled = mythic_enabled;
+    }
+
+    public void put_to_vanilla(EntityType key, List<String>[] value) {
+        vanilla.put(key, value);
+    }
+
+    public void put_to_mythic(String key, List<String>[] value) {
+        mythic.put(key, value);
+    }
+
+    public boolean contains_vanilla(EntityType key) {
+        return vanilla.containsKey(key);
+    }
+
+    public boolean contains_mythic(String key) {
+        return mythic.containsKey(key);
+    }
+
+    public List<String> get_items(EntityType key, int rarity) {
+        if(vanilla.containsKey(key)) return vanilla.get(key)[rarity];
+        else return null;
+    }
+
+    public List<String> get_items(String key, int rarity) {
+        if(mythic.containsKey(key)) return mythic.get(key)[rarity];
+        else return null;
+    }
+
+}
