@@ -70,7 +70,6 @@ public final class EventsHandler implements Listener {
     public void onMythicPerish(MythicMobDeathEvent event) {
         if(!plugin.config.isMythic_enabled()) return;
         if(plugin.config.isPlayer_only() && event.getKiller() == null) return;
-        getLogger().info("Mob that died was mythic mob " + event.getMobType().getInternalName() + ".");
         if(!plugin.config.contains_mythic(event.getMobType().getInternalName())) return;
 
         List<String> commons = plugin.config.get_items(event.getMobType().getInternalName(), 0);
