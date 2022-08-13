@@ -31,6 +31,7 @@ public final class EventsHandler implements Listener {
     public void onVanillaPerish(EntityDeathEvent event) {
         if(!plugin.config.isVanilla_enabled()) return;
         if(plugin.config.isPlayer_only() && event.getEntity().getKiller() == null) return;
+        if(!plugin.config.contains_vanilla(event.getEntityType())) return;
         if(plugin.config.isMythic_enabled())
             if(((MythicBukkit) (Objects.requireNonNull(getServer().getPluginManager().getPlugin("MythicMobs")))).getAPIHelper().isMythicMob(event.getEntity())) return;
 
@@ -38,7 +39,7 @@ public final class EventsHandler implements Listener {
         List<String> rares = plugin.config.get_items(event.getEntityType(), 1);
 
         //For the common items (all of them can drop at one time)
-        for(String data : commons) {
+        if(commons != null) for(String data : commons) {
             String slimefun_item = data.split(" ")[0];
             double drop_rate = Double.parseDouble(data.split(" ")[1]);
 
@@ -51,7 +52,7 @@ public final class EventsHandler implements Listener {
         }
 
         //For the rare items (only one can drop at a time)
-        for(String data : rares) {
+        if(rares != null) for(String data : rares) {
             String slimefun_item = data.split(" ")[0];
             double drop_rate = Double.parseDouble(data.split(" ")[1]);
 
@@ -69,12 +70,14 @@ public final class EventsHandler implements Listener {
     public void onMythicPerish(MythicMobDeathEvent event) {
         if(!plugin.config.isMythic_enabled()) return;
         if(plugin.config.isPlayer_only() && event.getKiller() == null) return;
+        getLogger().info("Mob that died was mythic mob " + event.getMobType().getInternalName() + ".");
+        if(!plugin.config.contains_mythic(event.getMobType().getInternalName())) return;
 
-        List<String> commons = plugin.config.get_items(event.getMob().getName().replaceAll(" ", ""), 0);
-        List<String> rares = plugin.config.get_items(event.getMob().getName().replaceAll(" ", ""), 1);
+        List<String> commons = plugin.config.get_items(event.getMobType().getInternalName(), 0);
+        List<String> rares = plugin.config.get_items(event.getMobType().getInternalName(), 1);
 
         //For the common items (all of them can drop at one time)
-        for(String data : commons) {
+        if(commons != null) for(String data : commons) {
             String slimefun_item = data.split(" ")[0];
             double drop_rate = Double.parseDouble(data.split(" ")[1]);
 
@@ -87,7 +90,7 @@ public final class EventsHandler implements Listener {
         }
 
         //For the rare items (only one can drop at a time)
-        for(String data : rares) {
+        if(rares != null) for(String data : rares) {
             String slimefun_item = data.split(" ")[0];
             double drop_rate = Double.parseDouble(data.split(" ")[1]);
 
