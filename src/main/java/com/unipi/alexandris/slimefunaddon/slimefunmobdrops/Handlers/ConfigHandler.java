@@ -11,7 +11,7 @@ import java.util.Objects;
 
 import static org.bukkit.Bukkit.getServer;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "unchecked"})
 public final class ConfigHandler {
 
     private final Config config = new Config();

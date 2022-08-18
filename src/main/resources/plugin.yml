@@ -13,12 +13,10 @@ main: com.unipi.alexandris.slimefunaddon.slimefunmobdrops.SlimefunMobDrops
 ## You can change this to link to your website or repository. You can also remove this line if you want to.
 website: https://anthonyal.github.io
 
-## This value is automatically replaced by the version specified in your pom.xml file.
-## Do not change this.
 version: ${project.version}
 
 ## This is the minimum minecraft version required to run your plugin.
-api-version: 1.14
+api-version: 1.18
 
 ## This is required and marks Slimefun as a plugin dependency.
 depend:
