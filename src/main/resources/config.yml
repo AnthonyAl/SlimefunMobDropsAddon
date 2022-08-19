@@ -1,3 +1,6 @@
+#DEBUG OPTION-If set to True, all dropped items will be logged in console.
+item_logging: False
+
 #Only mobs dying my a player will drop custom loot if set to True.
 player_only: True
 

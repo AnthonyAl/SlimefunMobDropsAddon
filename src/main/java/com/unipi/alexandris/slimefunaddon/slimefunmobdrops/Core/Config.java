@@ -7,6 +7,8 @@ import java.util.List;
 
 public final class Config {
 
+    private boolean item_logging;
+
     private boolean player_only;
 
     private boolean vanilla_enabled;
@@ -16,6 +18,15 @@ public final class Config {
     private final HashMap<EntityType, List<String>> vanilla = new HashMap<>();
 
     private final HashMap<String, List<String>> mythic = new HashMap<>();
+
+
+    public boolean isItem_logging() {
+        return item_logging;
+    }
+
+    public void setItem_logging(boolean item_logging) {
+        this.item_logging = item_logging;
+    }
 
     public boolean isPlayer_only() {
         return player_only;

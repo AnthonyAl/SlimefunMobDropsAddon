@@ -7,17 +7,17 @@ import io.lumine.mythic.bukkit.MythicBukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.EntityType;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
 import static org.bukkit.Bukkit.getServer;
 
-@SuppressWarnings({"unused", "unchecked"})
+@SuppressWarnings({"unused"})
 public final class ConfigHandler {
 
     private final Config config = new Config();
-    private final List<DropTable> dropTables = new ArrayList<>();
+    private final HashMap<String, DropTable> dropTables = new HashMap<>();
 
     public ConfigHandler(SlimefunMobDrops plugin) {
         loadDropTables(plugin);
@@ -62,10 +62,11 @@ public final class ConfigHandler {
 
             List<String> items = fileConfiguration.getStringList(s+ ".items");
 
-            if(items == null) items = new ArrayList<>();
-
-            dropTables.add(new DropTable(s, noDrop, items));
+            dropTables.put(s, new DropTable(s, noDrop, items));
         }
+    }
+    public boolean isItem_Logging() {
+        return config.isItem_logging();
     }
 
     public boolean isPlayer_only() {
@@ -88,12 +89,16 @@ public final class ConfigHandler {
         return config.contains_mythic(key);
     }
 
-    public List<String> get_drops(EntityType key, int rarity) {
+    public List<String> get_drops(EntityType key) {
         return config.get_drops(key);
     }
 
-    public List<String> get_drops(String key, int rarity) {
+    public List<String> get_drops(String key) {
         return config.get_drops(key);
+    }
+
+    public DropTable getTable(String name) {
+        return dropTables.get(name);
     }
 
 }
