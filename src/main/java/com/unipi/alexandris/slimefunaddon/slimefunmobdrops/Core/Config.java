@@ -13,9 +13,9 @@ public final class Config {
 
     private boolean mythic_enabled;
 
-    private final HashMap<EntityType, List<String>[]> vanilla = new HashMap<>();
+    private final HashMap<EntityType, List<String>> vanilla = new HashMap<>();
 
-    private final HashMap<String, List<String>[]> mythic = new HashMap<>();
+    private final HashMap<String, List<String>> mythic = new HashMap<>();
 
     public boolean isPlayer_only() {
         return player_only;
@@ -41,11 +41,11 @@ public final class Config {
         this.mythic_enabled = mythic_enabled;
     }
 
-    public void put_to_vanilla(EntityType key, List<String>[] value) {
+    public void put_to_vanilla(EntityType key, List<String> value) {
         vanilla.put(key, value);
     }
 
-    public void put_to_mythic(String key, List<String>[] value) {
+    public void put_to_mythic(String key, List<String> value) {
         mythic.put(key, value);
     }
 
@@ -57,14 +57,12 @@ public final class Config {
         return mythic.containsKey(key);
     }
 
-    public List<String> get_items(EntityType key, int rarity) {
-        if(vanilla.containsKey(key)) return vanilla.get(key)[rarity];
-        else return null;
+    public List<String> get_drops(EntityType key) {
+        return vanilla.getOrDefault(key, null);
     }
 
-    public List<String> get_items(String key, int rarity) {
-        if(mythic.containsKey(key)) return mythic.get(key)[rarity];
-        else return null;
+    public List<String> get_drops(String key) {
+        return mythic.getOrDefault(key, null);
     }
 
 }

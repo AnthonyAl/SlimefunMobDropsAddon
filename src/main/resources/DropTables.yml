@@ -1,0 +1,26 @@
+#DropTables creation file
+#Drop tables calculate with weights, for instance:
+#- item1 1 50
+#- item2 1 20
+#item1 has a 50 in 70 (50 + 20) chance of drop whereas item2 has a 20 in 70.
+#========================|
+
+DropTableExample1:
+  #specify the weight of nothing dropping from this dropTable.
+  noDrop: 19.9
+  items:
+    - slimefun:ADAMANTITE 1-5 30.0
+    - slimefun:SKELETON_DATA_CARD 1-2 0.1
+    - slimefun:INFERNAL_BONEMEAL 3-5 50.0
+
+DropTableExample2:
+  noDrop: 0
+  items:
+    - slimefun:CARBONADO 1 20.0
+    - slimefun:CARBON 1-3 80.0
+
+DropTableExample3:
+  noDrop: 80
+  items:
+    - minecraft:bone 1-5 20.0
+    - slimefun:MAGICAL_ZOMBIE_PILLS 5-10 100.0

@@ -6,22 +6,18 @@ vanilla:
   enabled: True
   #Custom vanilla mob loot tables.
   skeleton:
-    rare_items:
-      - ADAMANTITE 50.0
-      - SKELETON_DATA_CARD 0.1
-    common_items:
-      - INFERNAL_BONEMEAL 80.0
+    #drop chances are calculated on a percentage.
+    drops:
+      - droptable:DropTableExample1 1-2 20.0
+      - minecraft:bonemeal 5-10 50.0
   zombie:
-    rare_items:
-      - MAGICAL_ZOMBIE_PILLS 10.0
-    common_items:
+    drops:
+      - droptable:DropTableExample2 3-5 80.0
 
 mythic:
   #Plugin will regard Mythic Mobs as Vanilla mobs if set to False.
   enabled: False
   #Custom mythic mob loot tables.
   skeletalminion:
-    rare_items:
-      - CARBONADO 20.0
-      - CARBON 80.0
-    common_items:
+    drops:
+      - droptable:DropTableExample3 1 100.0
