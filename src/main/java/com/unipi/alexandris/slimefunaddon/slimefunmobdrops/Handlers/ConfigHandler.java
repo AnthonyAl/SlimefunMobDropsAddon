@@ -31,6 +31,7 @@ public final class ConfigHandler {
         config.setVanilla_enabled(fileConfiguration.getBoolean("vanilla.enabled"));
         config.setMythic_enabled(fileConfiguration.getBoolean("mythic.enabled"));
         config.setPlayer_only(fileConfiguration.getBoolean("player_only"));
+        config.setItem_logging(fileConfiguration.getBoolean("item_logging"));
 
         if(config.isVanilla_enabled())
             for(EntityType type : EntityType.values()) {
