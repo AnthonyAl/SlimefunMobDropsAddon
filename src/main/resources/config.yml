@@ -12,7 +12,7 @@ vanilla:
     #drop chances are calculated on a percentage.
     drops:
       - droptable:DropTableExample1 1-2 20.0
-      - minecraft:bonemeal 5-10 50.0
+      - minecraft:bone_meal 5-10 50.0
   zombie:
     drops:
       - droptable:DropTableExample2 3-5 80.0
