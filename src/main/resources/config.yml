@@ -18,9 +18,9 @@ vanilla:
       - droptable:DropTableExample2 3-5 80.0
 
 mythic:
-  #Plugin will regard Mythic Mobs as Vanilla mobs if set to False.
+  #Plugin will regard Mythic Mobs as Vanilla mobs if set to False. (needs server restart after change)
   enabled: False
   #Custom mythic mob loot tables.
-  skeletalminion:
+  SkeletalMinion:
     drops:
       - droptable:DropTableExample3 1 100.0

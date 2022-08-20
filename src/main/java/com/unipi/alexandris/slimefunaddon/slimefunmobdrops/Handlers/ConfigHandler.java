@@ -47,7 +47,7 @@ public final class ConfigHandler {
             MythicBukkit mythicBukkit = (MythicBukkit) (getServer().getPluginManager().getPlugin("MythicMobs"));
             for (String type : Objects.requireNonNull(mythicBukkit).getMobManager().getMobNames()) {
                 String path = "mythic.";
-                if(!fileConfiguration.contains(path += type.toLowerCase())) continue;
+                if(!fileConfiguration.contains(path += type)) continue;
                 List<String> data;
                 data = fileConfiguration.getStringList(path+".drops");
                 config.put_to_mythic(type, data);

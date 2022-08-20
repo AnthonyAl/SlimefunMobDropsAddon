@@ -18,7 +18,7 @@ import java.util.Objects;
 
 import static org.bukkit.Bukkit.getLogger;
 
-public class EventsMythicHandler implements Listener {
+public final class EventsMythicHandler implements Listener {
 
     private final SlimefunMobDrops plugin;
 
@@ -32,7 +32,6 @@ public class EventsMythicHandler implements Listener {
         if (!plugin.config.isMythic_enabled()) return;
         if (plugin.config.isPlayer_only() && event.getKiller() == null) return;
         if (!plugin.config.contains_mythic(event.getMobType().getInternalName())) return;
-
         List<String> drops = plugin.config.get_drops(event.getMobType().getInternalName());
 
         if (drops != null) for (String data : drops) {
