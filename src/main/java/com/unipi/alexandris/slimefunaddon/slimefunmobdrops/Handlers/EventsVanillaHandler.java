@@ -6,6 +6,7 @@ import com.unipi.alexandris.slimefunaddon.slimefunmobdrops.Core.Utils;
 import com.unipi.alexandris.slimefunaddon.slimefunmobdrops.SlimefunMobDrops;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSpawnReason;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.lumine.mythic.bukkit.MythicBukkit;
 import org.bukkit.Material;
@@ -60,16 +61,21 @@ public final class EventsVanillaHandler implements Listener {
                         for(int i = 0; i < amount; i++) {
                             DropTable dT = plugin.config.getTable(data.split(" ")[0].split(":")[1]);
                             //If dT is null, there has been a mistake in the config file setups.
-                            if(dT == null) return;
+                            if(dT == null) {
+                                getLogger().severe("DataTable " + data.split(" ")[0].split(":")[1] + " was not found," +
+                                        " please check your config.yml for typo mistakes.");
+                                return;
+                            }
                             DropTable.Drop drop = dT.getRandDrop();
                             //drop is only null when the dT has randomly picked to drop no items (dT.noDropWeight)
                             if(drop == null) continue;
 
-                            if(drop.getType().equals("minecraft"))
+                            if(drop.getType().equals("minecraft")) {
                                 dropMinecraftItem(event, drop.getName(), Utils.getRandValue(drop.getMin(), drop.getMax()));
-
-                            if(drop.getType().equals("slimefun"))
+                            }
+                            if(drop.getType().equals("slimefun")) {
                                 dropSlimefunItem(event, drop.getName(), Utils.getRandValue(drop.getMin(), drop.getMax()));
+                            }
                         }
                     }
                     break;
@@ -78,14 +84,14 @@ public final class EventsVanillaHandler implements Listener {
     }
 
     private void dropSlimefunItem(EntityDeathEvent event, String name, int stack) {
-        ItemStack itemStack = Objects.requireNonNull(SlimefunItem.getById(name)).getItem();
+        SlimefunItemStack itemStack = new SlimefunItemStack(name, Objects.requireNonNull(SlimefunItem.getById(name)).getItem());
         itemStack.setAmount(stack);
         if(plugin.config.isItem_Logging()) getLogger().info("Spawned slimefun item " + name + " x" + stack + " as a result of a Vanilla Mob Drop.");
         SlimefunUtils.spawnItem(event.getEntity().getLocation(), itemStack, ItemSpawnReason.MISC);
     }
 
     private void dropMinecraftItem(EntityDeathEvent event, String name, int stack) {
-        ItemStack itemStack = new ItemStack(Objects.requireNonNull(Material.getMaterial(name)));
+        ItemStack itemStack = new ItemStack(Objects.requireNonNull(Material.getMaterial(name.toUpperCase())));
         itemStack.setAmount(stack);
         if(plugin.config.isItem_Logging()) getLogger().info("Spawned minecraft item " + name + " x" + stack + " as a result of a Vanilla Mob Drop.");
         event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), itemStack);

@@ -5,6 +5,7 @@ import com.unipi.alexandris.slimefunaddon.slimefunmobdrops.Core.Utils;
 import com.unipi.alexandris.slimefunaddon.slimefunmobdrops.SlimefunMobDrops;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSpawnReason;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.lumine.mythic.bukkit.events.MythicMobDeathEvent;
 import org.bukkit.Material;
@@ -53,7 +54,11 @@ public class EventsMythicHandler implements Listener {
                     if (Utils.calcDropChance(Double.parseDouble(data.split(" ")[2]))) {
                         for (int i = 0; i < amount; i++) {
                             DropTable dT = plugin.config.getTable(data.split(" ")[0].split(":")[1]);
-                            if (dT == null) return;
+                            if(dT == null) {
+                                getLogger().severe("DataTable " + data.split(" ")[0].split(":")[1] + " was not found," +
+                                        " please check your config.yml for typo mistakes.");
+                                return;
+                            }
                             DropTable.Drop drop = dT.getRandDrop();
 
                             if (drop == null) continue;
@@ -72,14 +77,14 @@ public class EventsMythicHandler implements Listener {
     }
 
     private void dropSlimefunItem(MythicMobDeathEvent event, String name, int stack) {
-        ItemStack itemStack = Objects.requireNonNull(SlimefunItem.getById(name)).getItem();
+        SlimefunItemStack itemStack = new SlimefunItemStack(name, Objects.requireNonNull(SlimefunItem.getById(name)).getItem());
         itemStack.setAmount(stack);
         if(plugin.config.isItem_Logging()) getLogger().info("Spawned slimefun item " + name + " x" + stack + " as a result of a Mythic Mob Drop.");
         SlimefunUtils.spawnItem(event.getEntity().getLocation(), itemStack, ItemSpawnReason.MISC);
     }
 
     private void dropMinecraftItem(MythicMobDeathEvent event, String name, int stack) {
-        ItemStack itemStack = new ItemStack(Objects.requireNonNull(Material.getMaterial(name)));
+        ItemStack itemStack = new ItemStack(Objects.requireNonNull(Material.getMaterial(name.toUpperCase())));
         itemStack.setAmount(stack);
         if(plugin.config.isItem_Logging()) getLogger().info("Spawned minecraft item " + name + " x" + stack + " as a result of a Mythic Mob Drop.");
         event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), itemStack);

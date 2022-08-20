@@ -10,6 +10,7 @@ import org.bukkit.entity.EntityType;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import static org.bukkit.Bukkit.getServer;
 
@@ -100,6 +101,10 @@ public final class ConfigHandler {
 
     public DropTable getTable(String name) {
         return dropTables.get(name);
+    }
+
+    public Set<String> getTableNames() {
+        return dropTables.keySet();
     }
 
 }

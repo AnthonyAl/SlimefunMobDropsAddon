@@ -4,6 +4,7 @@ import com.unipi.alexandris.slimefunaddon.slimefunmobdrops.Handlers.CommandsHand
 import com.unipi.alexandris.slimefunaddon.slimefunmobdrops.Handlers.ConfigHandler;
 import com.unipi.alexandris.slimefunaddon.slimefunmobdrops.Handlers.EventsMythicHandler;
 import com.unipi.alexandris.slimefunaddon.slimefunmobdrops.Handlers.EventsVanillaHandler;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -12,6 +13,7 @@ import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Objects;
 
 public class SlimefunMobDrops extends JavaPlugin implements SlimefunAddon {
@@ -65,7 +67,11 @@ public class SlimefunMobDrops extends JavaPlugin implements SlimefunAddon {
         }
 
         dropTablesConfig = new YamlConfiguration();
-        YamlConfiguration.loadConfiguration(dropTablesConfigFile);
+        try {
+            dropTablesConfig.load(dropTablesConfigFile);
+        } catch (IOException | InvalidConfigurationException e) {
+            e.printStackTrace();
+        }
     }
 
 }
