@@ -4,16 +4,17 @@ package com.unipi.alexandris.slimefunaddon.slimefunmobdrops.Core;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class DropTable {
 
-    private static class Drop {
+    public static class Drop {
         private final int min;
         private final int max;
         private final String type;
         private final String name;
         private final double weight;
 
-        public Drop(int min, int max, String type, String name, double weight) {
+        private Drop(int min, int max, String type, String name, double weight) {
             this.min = min;
             this.max = max;
             this.type = type;
@@ -43,13 +44,14 @@ public class DropTable {
     }
 
     private final String tableName;
-    double noDropWeight = 0;
+    private final double noDropWeight;
     private final List<Drop> drops = new ArrayList<>();
+    double total;
 
     public DropTable(String tableName, double noDropWeight, List<String> items) {
         this.tableName = tableName;
         this.noDropWeight = noDropWeight;
-        double total = noDropWeight;
+        total = noDropWeight;
 
         for(String item : items) {
             String[] data = item.split(" ");
@@ -73,7 +75,12 @@ public class DropTable {
         return noDropWeight;
     }
 
-    public Drop getDrop(int index) {
-        return drops.get(index);
+    public Drop getRandDrop() {
+        double r = Utils.getRandValue(0, total);
+        if(noDropWeight >= r) return null;
+        for(Drop drop : drops)
+            if(drop.getWeight() >= r)
+                return drop;
+        return null;
     }
 }

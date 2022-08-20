@@ -9,4 +9,14 @@ public abstract class Utils {
         return r.nextDouble(100) < rarity;
     }
 
+    public static int getRandValue(int min, int max) {
+        ThreadLocalRandom r = ThreadLocalRandom.current();
+        return r.nextInt(min, max);
+    }
+
+    public static double getRandValue(double min, double max) {
+        ThreadLocalRandom r = ThreadLocalRandom.current();
+        return r.nextDouble(min, max);
+    }
+
 }
