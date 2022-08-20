@@ -29,7 +29,7 @@ public class SlimefunMobDrops extends JavaPlugin implements SlimefunAddon {
         config = new ConfigHandler(this);
         Objects.requireNonNull(getCommand("sfmobdrops")).setExecutor(new CommandsHandler(this));
         getServer().getPluginManager().registerEvents(new EventsVanillaHandler(this), this);
-        getServer().getPluginManager().registerEvents(new EventsMythicHandler(this), this);
+        if(config.isMythic_enabled()) getServer().getPluginManager().registerEvents(new EventsMythicHandler(this), this);
     }
 
     @Override
