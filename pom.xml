@@ -6,7 +6,7 @@
 
     <groupId>com.unipi.alexandris.slimefunaddon</groupId>
     <artifactId>SlimefunMobDropsAddon</artifactId>
-    <version>1.5-SNAPSHOT</version>
+    <version>1.5-RELEASE</version>
 
     <description>My Boss Mobs implementation using Mythic Mobs</description>
     <properties>

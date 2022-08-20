@@ -11,12 +11,14 @@ public abstract class Utils {
 
     public static int getRandValue(int min, int max) {
         ThreadLocalRandom r = ThreadLocalRandom.current();
-        return r.nextInt(min, max);
+        if(min < max) return r.nextInt(min, max);
+        else return min;
     }
 
     public static double getRandValue(double min, double max) {
         ThreadLocalRandom r = ThreadLocalRandom.current();
-        return r.nextDouble(min, max);
+        if(min < max) return r.nextDouble(min, max);
+        else return min;
     }
 
 }
