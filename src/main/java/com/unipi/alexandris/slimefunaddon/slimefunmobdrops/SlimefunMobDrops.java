@@ -2,7 +2,8 @@ package com.unipi.alexandris.slimefunaddon.slimefunmobdrops;
 
 import com.unipi.alexandris.slimefunaddon.slimefunmobdrops.Handlers.CommandsHandler;
 import com.unipi.alexandris.slimefunaddon.slimefunmobdrops.Handlers.ConfigHandler;
-import com.unipi.alexandris.slimefunaddon.slimefunmobdrops.Handlers.EventsHandler;
+import com.unipi.alexandris.slimefunaddon.slimefunmobdrops.Handlers.EventsMythicHandler;
+import com.unipi.alexandris.slimefunaddon.slimefunmobdrops.Handlers.EventsVanillaHandler;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -27,7 +28,8 @@ public class SlimefunMobDrops extends JavaPlugin implements SlimefunAddon {
 
         config = new ConfigHandler(this);
         Objects.requireNonNull(getCommand("sfmobdrops")).setExecutor(new CommandsHandler(this));
-        getServer().getPluginManager().registerEvents(new EventsHandler(this), this);
+        getServer().getPluginManager().registerEvents(new EventsVanillaHandler(this), this);
+        getServer().getPluginManager().registerEvents(new EventsMythicHandler(this), this);
     }
 
     @Override
