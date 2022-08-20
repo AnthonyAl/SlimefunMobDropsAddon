@@ -5,7 +5,7 @@ name: SlimefunMobDrops
 author: Antitonius
 
 ## CHANGE this to a meaninful but short description of your plugin.
-description: My implementation of a Slimefun Mob Drop Table Addon.
+description: My implementation of a Slimefun Mob Drop-Table Addon.
 
 ## CHANGE this to the path of the class that extends JavaPlugin.
 main: com.unipi.alexandris.slimefunaddon.slimefunmobdrops.SlimefunMobDrops

@@ -8,7 +8,7 @@
     <artifactId>SlimefunMobDropsAddon</artifactId>
     <version>1.5-RELEASE</version>
 
-    <description>My Boss Mobs implementation using Mythic Mobs</description>
+    <description>My implementation of a Slimefun Mob Drop-Table Addon.</description>
     <properties>
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
