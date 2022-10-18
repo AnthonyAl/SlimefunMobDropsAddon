@@ -20,6 +20,7 @@ public class ReloadCmd implements SubCommand{
     public boolean onCommand(CommandSender sender, String[] args) {
         sender.sendMessage("Reloading SlimefunMobDrops.. .  . ");
         plugin.reloadConfig();
+        plugin.createDropsConfig();
         plugin.config = new ConfigHandler(plugin);
         return true;
     }

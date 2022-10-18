@@ -59,7 +59,7 @@ public class SlimefunMobDrops extends JavaPlugin implements SlimefunAddon {
         return this.dropTablesConfig;
     }
 
-    private void createDropsConfig() {
+    public void createDropsConfig() {
         File dropTablesConfigFile = new File(getDataFolder(), "DropTables.yml");
         if (!dropTablesConfigFile.exists()) {
             dropTablesConfigFile.getParentFile().mkdirs();
